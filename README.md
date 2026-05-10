@@ -2,7 +2,7 @@
 
 A comprehensive web-based library management system designed for educational institutions. Built with Node.js, Express, MongoDB, and EJS, StuLib enables students to browse books, borrow items, track requests, and manage their library profiles efficiently.
 
-**Live Demo:** [Deployed on Render](https://stulib-library.onrender.com)
+**Live Demo:** [Deployed on Render](https://stulib.onrender.com/home)
 
 ## 📋 Table of Contents
 
