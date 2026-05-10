@@ -81,8 +81,8 @@ Since email functionality requires domain configuration (not setup for this educ
 
 | Username | Password | Purpose |
 |----------|----------|---------|
-| **Demo** | Demo | Testing the complete student interface and features |
-| **Demo1** | Demo1 | Additional account for testing multi-user scenarios |
+| **demo** | demo | Testing the complete student interface and features |
+| **demo1** | demo1 | Additional account for testing multi-user scenarios |
 
 ### Demo Account Limitations
 
@@ -379,7 +379,3 @@ This project demonstrates:
 - Email: Pre-configured (awaiting API key)
 
 ---
-
-**Built with ❤️ for educational purposes**
-
-*Last Updated: 2024*
