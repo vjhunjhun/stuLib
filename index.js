@@ -82,13 +82,13 @@ async function main(){
 
 app.get("/home",logOutUser,wrapAsync(async (req,res)=>{
     let stats = await SiteStat.findOne();
-    if(!stats){
-         stats = await SiteStat.create({
-            studentJoined: 0,
-            bookShared: 0,
-            totalBooks:0
-        });
-    }
+    // if(!stats){
+    //      stats = await SiteStat.create({
+    //         studentJoined: 0,
+    //         bookShared: 0,
+    //         totalBooks:0
+    //     });
+    // }
     if(!req.user){
         res.locals.currUser="";
     }
