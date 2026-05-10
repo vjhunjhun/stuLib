@@ -18,7 +18,7 @@ module.exports.changePass = async(req,res)=>{
       let student = await Student.findById(req.user._id);
       
       // Prevent demo users from changing password
-      if (student.username === "Demo" || student.username === "Demo1") {
+      if (student.username === "demo" || student.username === "demo1") {
         req.flash("error", "Demo accounts cannot change password. This is a demo account for testing purposes only.");
         return res.redirect("/student/profile");
       }
@@ -40,7 +40,7 @@ module.exports.deleteUser = async(req,res,next)=>{
   const student = await Student.findById(studentId);
   
   // Prevent demo users from deleting their account
-  if (student.username === "Demo" || student.username === "Demo1") {
+  if (student.username === "demo" || student.username === "demo1") {
     req.flash("error", "Demo accounts cannot be deleted. This is a demo account for testing purposes only.");
     return res.redirect("/student/profile");
   }
