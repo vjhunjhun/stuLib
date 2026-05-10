@@ -10,6 +10,13 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASS
     }
 });
+transporter.verify((error, success) => {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("SMTP server is ready");
+  }
+});
 async function sendEmailVerification(email,token) {
     const url = `${process.env.BASE_URL}/user/verify-email/${token}`;
 
