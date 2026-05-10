@@ -16,6 +16,13 @@ module.exports.renderChangePassForm = (req,res)=>{
 module.exports.changePass = async(req,res)=>{
       let {oldPassword,newPassword} = req.body;
       let student = await Student.findById(req.user._id);
+      
+      // Prevent demo users from changing password
+      if (student.username === "Demo" || student.username === "Demo1") {
+        req.flash("error", "Demo accounts cannot change password. This is a demo account for testing purposes only.");
+        return res.redirect("/student/profile");
+      }
+      
       try{
       await student.changePassword(oldPassword,newPassword);
       await student.save();
@@ -30,7 +37,14 @@ module.exports.changePass = async(req,res)=>{
 
 module.exports.deleteUser = async(req,res,next)=>{
   let studentId = req.user._id;
-  const student = await Student.findById(studentId,{books:1,_id:0});
+  const student = await Student.findById(studentId);
+  
+  // Prevent demo users from deleting their account
+  if (student.username === "Demo" || student.username === "Demo1") {
+    req.flash("error", "Demo accounts cannot be deleted. This is a demo account for testing purposes only.");
+    return res.redirect("/student/profile");
+  }
+  
   const books = student.books;
   for(let book of books){
     await Book.findByIdAndDelete(book.book_id);
