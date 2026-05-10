@@ -2,7 +2,7 @@
 
 A comprehensive web-based library management system designed for educational institutions. Built with Node.js, Express, MongoDB, and EJS, StuLib enables students to browse books, borrow items, track requests, and manage their library profiles efficiently.
 
-**Live Demo:** [Deployed on Render](https://stulib-library.onrender.com)
+**Live Demo:** [Deployed on Render](https://stulib.onrender.com/home)
 
 ## 📋 Table of Contents
 
@@ -81,8 +81,8 @@ Since email functionality requires domain configuration (not setup for this educ
 
 | Username | Password | Purpose |
 |----------|----------|---------|
-| **Demo** | Demo | Testing the complete student interface and features |
-| **Demo1** | Demo1 | Additional account for testing multi-user scenarios |
+| **demo** | demo | Testing the complete student interface and features |
+| **demo1** | demo1 | Additional account for testing multi-user scenarios |
 
 ### Demo Account Limitations
 
@@ -379,7 +379,3 @@ This project demonstrates:
 - Email: Pre-configured (awaiting API key)
 
 ---
-
-**Built with ❤️ for educational purposes**
-
-*Last Updated: 2024*
