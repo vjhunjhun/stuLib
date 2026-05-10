@@ -4,25 +4,39 @@ const nodemailer = require("nodemailer");
 const SiteStat = require("../../model/siteStat");
 console.log("Before transporter");
 const transporter = nodemailer.createTransport({
-    service:"gmail",
-    auth:{
-        user: process.env.EMAIL,
-    pass: process.env.EMAIL_PASS
-    }
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
+
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.EMAIL_PASS,
+  },
+
+  tls: {
+    rejectUnauthorized: false,
+  },
+
+  connectionTimeout: 10000,
+  greetingTimeout: 10000,
+  socketTimeout: 10000,
+
+  family: 4,
 });
 console.log("After transporter");
 console.log("EMAIL:", process.env.EMAIL);
 console.log("PASS EXISTS:", !!process.env.EMAIL_PASS);
 console.log("BASE_URL:", process.env.BASE_URL);
-transporter.verify((error, success) => {
-  console.log("Inside verify callback");
+console.log("Starting verify");
 
-  if (error) {
-    console.log("SMTP ERROR:", error);
-  } else {
-    console.log("SMTP server is ready");
-  }
-});
+transporter
+  .verify()
+  .then(() => {
+    console.log("SMTP READY");
+  })
+  .catch((err) => {
+    console.error("SMTP ERROR:", err);
+  });
 async function sendEmailVerification(email,token) {
     const url = `${process.env.BASE_URL}/user/verify-email/${token}`;
 
