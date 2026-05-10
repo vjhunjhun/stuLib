@@ -2,7 +2,7 @@ const Student = require("../../model/student");
 const crypto = require("crypto");
 const nodemailer = require("nodemailer");
 const SiteStat = require("../../model/siteStat");
-
+console.log("Before transporter");
 const transporter = nodemailer.createTransport({
     service:"gmail",
     auth:{
@@ -10,9 +10,15 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASS
     }
 });
+console.log("After transporter");
+console.log("EMAIL:", process.env.EMAIL);
+console.log("PASS EXISTS:", !!process.env.EMAIL_PASS);
+console.log("BASE_URL:", process.env.BASE_URL);
 transporter.verify((error, success) => {
+  console.log("Inside verify callback");
+
   if (error) {
-    console.log(error);
+    console.log("SMTP ERROR:", error);
   } else {
     console.log("SMTP server is ready");
   }
