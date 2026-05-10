@@ -1,0 +1,149 @@
+<%layout("/layouts/boilerplate.ejs")%>
+<% layout("/layouts/boilerplate.ejs") %>
+<style>
+
+.req-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e5e5e5;
+  transition: 0.25s ease-in-out;
+}
+
+.req-card:hover {
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+
+.status-tag {
+  background: #0d6efd;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 30px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.requested{
+     background: #0d6efd;
+}
+.declined{
+     background: grey;
+     color: white;
+}
+.accepted{
+    background: green;
+}
+.request-time {
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+
+.conf-btn {
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  border-radius: 20px;
+}
+
+.req-left {
+  max-width: 60%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+.Borrow-request{
+    background: rgb(220, 159, 19);
+}
+.return-request{
+    background: rgb(152, 46, 46);
+}
+.cancel-btn {
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  border-radius: 20px;
+}
+@media (max-width: 350px) {
+
+  .req-card .d-flex {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+
+  .req-left {
+    max-width: 100% !important;
+  }
+
+  
+  .text-end {
+    text-align: left !important;
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  
+  .action-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .action-row button {
+    flex: 1; 
+  }
+}
+
+</style>
+
+<div class="container mt-4">
+<a href="/student/requests" class="btn btn-outline-secondary btn-sm mb-1">
+        <i class="fa-solid fa-arrow-left"></i> Back
+      </a>
+  <h3 class="text-center mb-4">
+    <%= requests.length === 0 ? "No Request Found!" : "Received Requests" %>
+  </h3>
+
+  <div class="row justify-content-center">
+
+    <% for (let request of requests) { %>
+      <div class="col-md-8 mb-3">
+        <div class="req-card shadow-sm p-3">
+
+          <div class="d-flex justify-content-between align-items-start">
+
+            
+            <div class="req-left">
+              <h5 class="mb-1">For Book Title: <%=request.requestFor.title%></h5>
+              <h6 class="mb-1 text-muted">From: <%=request.requestBy.name%></h6>
+            </div>
+
+            
+            <div class="text-end">
+              <p class="request-time mb-2"><%=request.createdOn.toLocaleString()%></p>
+              <span class="status-tag <%=request.isBorrowRequest?'Borrow-request':'Return-request'%>">
+                <%=request.isBorrowRequest?'Borrow request':'Return request'%></span>
+                <br>
+              <div class="action-row">
+                <%if(request.requestStatus==='requested'){%>
+                  <form action="received/<%=request._id%>/accept" method="post" style="display: inline;">
+                    <button class="btn btn-success btn-sm conf-btn mt-2 mx-2">Accept</button>
+                  </form>
+                  <form action="received/<%=request._id%>/decline" method="post" style="display: inline;">
+                    <button class="btn btn-danger btn-sm conf-btn mt-2">Decline</button>
+                  </form>
+    <%}else{%>
+      <span class="status-tag <%=request.requestStatus%>">Status: <%=request.requestStatus%></span>
+      <form action="received/<%=request._id%>?_method=delete" method="post" style="display: inline;">
+        <button class="btn btn-danger btn-sm cancel-btn"><i class='fa-solid fa-x'></i></button>
+      </form>
+                            
+                            <%}%>
+  </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    <% } %>
+
+  </div>
+</div>

@@ -1,0 +1,38 @@
+    <nav class="navbar navbar-expand-sm border-bottom sticky-top">
+      <div class="container-fluid d-flex justify-content-between align-items-center">
+        <div class="logo">
+          <a href="/home">
+            <i class="fa-solid fa-book"></i>
+            <span>stuLib</span>
+          </a>
+        </div>
+        <button class="navbar-toggler" type="button" 
+        data-bs-toggle="collapse" 
+        data-bs-target="#navbarNavAltMarkup" 
+        aria-controls="navbarNavAltMarkup" 
+        aria-expanded="false" 
+        aria-label="Toggle navigation">
+<i class="fa-solid fa-link"></i>
+</button>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav ms-auto flex-column flex-sm-row options">
+      <%if(!currUser){%>
+      <a class="nav-item nav-link" href="/about">About</a>
+      <a class="nav-item nav-link" href="/features">Features</a>
+      <a class="nav-item nav-link" href="/contact">Contact</a>
+      <%}%>
+      <%if(currUser){%>
+        <%if(currentPath!=="/student/" && currentPath!=="/student"){%>
+          <a class="nav-item nav-link" href="/student/">Home</a>
+        <%}%>
+        <%if(currentPath!=="/student/profile"){%>
+          <a class="nav-item nav-link" href="/student/profile">Profile</a>
+        <%}%>
+      <a class="nav-item nav-link" href="/user/logout">Logout</a>
+      <%}%>
+    </div>
+  </div>
+</div>
+</nav>     
+

@@ -1,0 +1,138 @@
+<%layout("/layouts/boilerplate.ejs")%>
+
+<div class="container py-5">
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="mb-4 text-center">Features</h1>
+            <p class="lead text-center mb-5">Discover what makes stuLib the perfect platform for student book sharing</p>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-10 mx-auto">
+            <div class="row mb-4">
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-book"></i>
+                        </div>
+                        <h4>Personal Library Management</h4>
+                        <p>Add, edit, and manage your book collection with ease. Keep track of all your books and their availability status.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-search"></i>
+                        </div>
+                        <h4>Smart Search</h4>
+                        <p>Search for books by title, author, or genre. Find exactly what you're looking for from your college community.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-handshake"></i>
+                        </div>
+                        <h4>Borrowing Requests</h4>
+                        <p>Send requests to borrow books from other students. View pending requests and manage your borrowing history easily.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-user-circle"></i>
+                        </div>
+                        <h4>User Profiles</h4>
+                        <p>Create a detailed profile, view book statistics, and connect with other students in the community.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-history"></i>
+                        </div>
+                        <h4>Borrowing History</h4>
+                        <p>Keep track of all books you've borrowed and returned. Maintain a complete record of your reading journey.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-bell"></i>
+                        </div>
+                        <h4>Notifications</h4>
+                        <p>Get instant updates when someone requests your books or when your request is approved.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-shield"></i>
+                        </div>
+                        <h4>Secure Authentication</h4>
+                        <p>Email verification ensures that only genuine college students can access the platform.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-chart-bar"></i>
+                        </div>
+                        <h4>Community Statistics</h4>
+                        <p>See how many books are being shared and how many students are actively participating in the community.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+            <h2 class="mb-4">Ready to Start?</h2>
+            <p class="mb-4">Join hundreds of students sharing knowledge and building a stronger academic community.</p>
+            <%if(!currUser){%>
+                <a href="/user/signup" class="btn btn-primary btn-lg me-2">Get Started</a>
+            <%}%>
+        </div>
+    </div>
+</div>
+
+<style>
+    .feature-card {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        text-align: center;
+        transition: all 0.3s ease;
+        height: 100%;
+    }
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+    .feature-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #007bff;
+    }
+    .feature-card h4 {
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+    .feature-card p {
+        font-size: 0.95rem;
+        color: #666;
+        line-height: 1.6;
+    }
+</style>

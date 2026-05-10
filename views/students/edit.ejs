@@ -1,0 +1,91 @@
+<%layout("/layouts/boilerplate.ejs")%>
+<div class="container mt-5 mb-5">
+    <a href="/student/mybooks/<%=book._id%>" class="btn btn-outline-secondary btn-sm mb-1">
+        <i class="fa-solid fa-arrow-left"></i> Back
+      </a>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow-lg p-4">
+                <h3 class="text-center mb-4">Add New Book</h3>
+
+                <form action="/student/mybooks/<%=book._id%>/edit?_method=patch" method="POST" novalidate class="needs-validation">
+
+                    <div class="mb-3">
+                        <label for="title" class="form-label fw-bold">Book Title*</label>
+                        <input type="text" id="title" name="book[title]" class="form-control" 
+                            value="<%=book.title%>" required maxlength="100">
+                            <div class="invalid-feedback">Cannot be empty.</div>
+                    </div>
+
+                  
+                    <div class="mb-3">
+                        <label for="author" class="form-label fw-bold">Author*</label>
+                        <input type="text" id="author" name="book[author]" class="form-control" 
+                            value="<%=book.author%>" required maxlength="50">
+                            <div class="invalid-feedback">Cannot be empty.</div>
+                    </div>
+
+                 
+                    <div class="mb-3">
+                        <label for="subject" class="form-label fw-bold">Subject*</label>
+                        <input type="text" id="subject" name="book[subject]" class="form-control" 
+                            value="<%=book.subject%>" required maxlength="50">
+                            <div class="invalid-feedback">Cannot be empty.</div>
+                    </div>
+
+                    
+                    <div class="mb-3">
+                        <label for="category" class="form-label fw-bold">Category</label>
+                        <input type="text" id="category" name="book[category]" class="form-control"
+                            value="<%=book.category%>" maxlength="50">
+                    </div>
+
+                    <%if(!book.isLent || !book.isHold){%>
+                    <div class="mb-5">
+                        <label for="status" class="form-label fw-bold">Status*</label>
+                        <select id="status" name="book[status]" class="form-select" required>
+                            <option value="available" <%=book.status==="available"?"selected":""%>>Available</option>
+                            <option value="not_available" <%=book.status==="not_available"?"selected":""%>>Not Available</option>
+                        </select>
+                    </div>
+                    <%}%>
+
+                    <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="faculty" class="form-label fw-bold">Faculty</label>
+                        <select id="faculty" name="book[faculty]" class="form-select">
+                            <option value="bct" <%=book.faculty==="bct"?"selected":""%>>BCT</option>
+                            <option value="other" <%=book.faculty==="other"?"selected":""%> >Other</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="semester" class="form-label fw-bold">Semester</label>
+                        <input type="number" id="semester" name="book[semester]" min="1" max="8"
+                            class="form-control" value="<%=book.semester%>">
+                    </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="isbn" class="form-label fw-bold">ISBN</label>
+                        <input type="text" id="isbn" name="book[isbn]" class="form-control" 
+                            value="<%=book.isbn%>" maxlength="50">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label fw-bold">Description</label>
+                        <textarea class="form-control" name="book[description]" id="description" maxlength="150" rows="3"><%=book.description%></textarea>
+                        <div class="invalid-feedback">Word limit is 150 words.</div>
+                    </div>
+
+                    <div class="d-grid mt-4">
+                        <button class="btn btn-primary btn-lg">Edit Book</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

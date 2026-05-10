@@ -1,0 +1,138 @@
+<%layout("/layouts/boilerplate.ejs")%>
+<style>
+    .form-select {
+  border: 1px solid #ced4da;
+  max-width: 100px;
+}
+.form-select::backdrop{
+    color: black !important;
+}
+.custom-select {
+  border: 1.5px solid #ced4da;
+  border-radius: 8px;
+  padding: 6px 35px 6px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.req-badge {
+  position: absolute;
+  top: -10px;
+  right: -9px;
+
+  min-width: 26px;
+  height: 26px;
+  padding: 0 6px;
+
+  background-color: #0d6efd; 
+  color: #fff;
+
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 0 0 3px #667eea;
+}
+
+
+@media(max-width:576px) {
+    .input-group{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+    .custom-select{
+        width: 100% !important;
+        border-radius: 10px !important;
+        margin-bottom: 5px;
+    }
+    #searchBookBtn{
+        border-radius: 30px;
+    }
+}
+
+</style>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2><%=greeting%>, <span id="studentName"><%=name%></span>!</h2>
+            <p class="text-muted">Explore your library dashboard below.</p>
+        </div>
+    </div>
+
+    
+    <div class="row my-4 justify-content-center">
+        <div class="col-md-6 col-sm-8">
+            <form action="/student/search" method="get">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control custom-select" placeholder="Search for a book...">
+                    <select id="filter"  name="fil" class="form-select custom-select">
+                            <option value="" >Filter</option>
+                            <option value="tit" selected>Title</option>
+                            <option value="sub">Subject</option>
+                            <option value="fac" >Faculty</option>
+                            <option value="sem">Semester</option>
+                            <option value="aut">Author</option>
+                            <option value="cat">Category</option>
+                            <option value="isb">isbn</option>
+                        </select>
+                    <button class="btn btn-primary" id="searchBookBtn">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    
+    <div class="row text-center mt-5 justify-content-center">
+        
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <h5 class="card-title">Borrowed Books</h5>
+                    <p class="card-text">See all the books you have borrowed.</p>
+                    <a href="/student/borrowed" class="btn btn-outline-primary mt-auto">View</a>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <h5 class="card-title">My Books</h5>
+                    <p class="card-text">Check books you have added to the library.</p>
+                    <a href="/student/mybooks" class="btn btn-outline-success mt-auto">View</a>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <h5 class="card-title">Add New Book</h5>
+                    <p class="card-text">Contribute a new book to the library collection.</p>
+                    <a href="/student/addbook" class="btn btn-outline-primary mt-auto">Add Book</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                 <span class="req-badge">
+      <%=reqCount || 0%>
+    </span>
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <h5 class="card-title">Requests</h5>
+                    <p class="card-text">See pending requests.</p>
+                    <a href="/student/requests" class="btn btn-outline-secondary mt-auto">See!</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<%layout("/layouts/boilerplate.ejs")%>
+<link rel="stylesheet" href="/css/formstyle.css">
+<body>
+    <br><br>
+    <div class="row m-1 mt-3 mb-3 ">
+        <div class="col-md-8 offset-md-2">
+            <form action="/user/signup" method="post" novalidate class="needs-validation simple-form-wrapper">
+                <h2>SignUp</h2>
+                <div class="mb-3">
+                    <label class="form-label" for="name">Name*</label>
+            <input class="form-control" id="name" id="name" name="student[name]" type="text" placeholder="Enter your Name" required maxlength="30"/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="email">Email*</label>
+            <input class="form-control" id="email" name="student[email]" type="email" placeholder="Enter your email" required maxlength="60"/>
+            <div class="invalid-feedback">Enter valid Email.</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="username">Username*</label>
+            <input class="form-control" id="username" name="student[username]" type="text" placeholder="Enter your username" required maxlength="30"/>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-md-6">
+                        <label class="form-label" for="course">Course</label>
+            <input class="form-control" id="course" name="student[course]" type="text" placeholder="Enter your Course" maxlength="20"/>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label class="form-label" for="roll">Roll No.*</label>
+            <input class="form-control" id="roll" name="student[roll]" type="text" placeholder="Enter your Roll No." minlength="9" maxlength="20"/>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="password">Password*</label>
+            <input class="form-control" id="password" name="student[password]" type="password" placeholder="Enter your password" required minlength="4" maxlength="15"/>
+            <div class="invalid-feedback">Min length:4</div>
+                </div>
+            <button class="simple-btn">Sign Up</button>
+            <p class="text-center mt-2">Have an account? <a href="/user/login">click here</a> to login.</p>
+    </form>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,52 @@
+<%layout("/layouts/boilerplate.ejs")%>
+<div class="gradient-curl gradient-curl-1"></div>
+<div class="gradient-curl gradient-curl-2"></div>
+<div class="gradient-curl gradient-curl-3"></div>
+<div class="gradient-curl gradient-curl-4"></div>
+<div class="auth-section">
+            <h1 class="title">
+                    Share Knowledge,<br>
+                    <span class="gradient-text">Build Community</span>
+                </h1>
+                <p class="subtitle">
+                    A peer-to-peer library system where students lend and borrow books for free.
+                    Share your books, discover new reads, and connect with fellow learners.
+                </p>
+                <div class="auth-cards">
+                    <div class="card">
+                        <div class="card-icon student-icon">
+                            <i class="fa-regular fa-user"></i>
+                        </div>
+                        <h2>Student Access</h2>
+                        <p>Sign up with your college email to start sharing and borrowing books</p>
+                        <div class="card-actions">
+                            <a href="/user/login" class="btn btn-primary">Login</a>
+                            <a href="/user/signup" class="btn btn-secondary">Sign Up</a>
+                        </div>
+                    </div>
+                    <!-- <div class="card">
+                        <div class="card-icon admin-icon">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <h2>Admin Portal</h2>
+                        <p>Manage the library system, verify users, and monitor activities</p>
+                        <div class="card-actions">
+                            <a href="/admin/login" class="btn btn-admin">Admin Login</a>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="stats-section">
+                    <div class="stat-item">
+                        <div class="stat-number"><%=stats.bookShared%></div>
+                        <div class="stat-label">Books Shared</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number"><%=stats.studentJoined%></div>
+                        <div class="stat-label">Active Students</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number"><%=stats. totalBooks%></div>
+                        <div class="stat-label">Total Books</div>
+                    </div>
+                </div>
+        </div>

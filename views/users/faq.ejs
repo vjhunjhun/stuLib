@@ -1,0 +1,275 @@
+<%layout("/layouts/boilerplate.ejs")%>
+
+<div class="container py-5">
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="mb-4 text-center">Frequently Asked Questions</h1>
+            <p class="lead text-center mb-5">Find answers to common questions about stuLib</p>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <div class="accordion" id="faqAccordion">
+                <!-- General Questions -->
+                <h5 class="mb-3 mt-4">General Questions</h5>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            What is stuLib?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            stuLib is a peer-to-peer library system designed for students to share and borrow books within their college community. It allows you to build a personal library, search for books from other students, and establish a network of knowledge sharing.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            Who can use stuLib?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <strong>Currently, stuLib is available only for Pulchowk students.</strong> You need a valid Pulchowk college email address to sign up and verify your account. We plan to expand to other institutions in the future.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            Is stuLib free to use?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Yes! stuLib is completely free. There are no fees for signing up, borrowing books, or lending books to other students. It's a community-driven platform built by students for students.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account & Sign Up -->
+                <h5 class="mb-3 mt-4">Account & Sign Up</h5>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            How do I sign up?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Click on "Sign Up" on the home page, enter your details, and use your Pulchowk college email address. You'll receive a verification email. Click the link in the email to verify your account and start using stuLib.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                            Why do I need to verify my email?
+                        </button>
+                    </h2>
+                    <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Email verification ensures that only genuine Pulchowk students have access to the platform. This protects the community and maintains the integrity of book sharing.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                            How do I reset my password?
+                        </button>
+                    </h2>
+                    <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Click "Forgot Password" on the login page and enter your email. You'll receive instructions to reset your password. For security purposes, never share your password with anyone.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Books & Borrowing -->
+                <h5 class="mb-3 mt-4">Books & Borrowing</h5>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+                            How do I add books to my collection?
+                        </button>
+                    </h2>
+                    <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Go to "My Books" and click "Add New Book". Fill in the book details (title, author, ISBN, condition, etc.) and click "Save". Your book will be added to your collection and become visible to other students.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
+                            <strong>I can't search for books. Why?</strong>
+                        </button>
+                    </h2>
+                    <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <strong>You must have at least one book added in your collection before you can search for and borrow books from other students.</strong> This ensures that the platform remains fair and encourages community participation. Go to "My Books" and add your first book to unlock the search feature.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq9">
+                            How do I borrow a book?
+                        </button>
+                    </h2>
+                    <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Use the Search feature to find books. Click on a book to view details and click "Request to Borrow". The book owner will receive your request and can approve or decline. Once approved, coordinate with the owner for pickup and return.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq10">
+                            How long can I keep a borrowed book?
+                        </button>
+                    </h2>
+                    <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            The borrowing period is negotiable between you and the book owner. Discuss and agree on a timeframe before exchanging the book. Always communicate and respect the agreed-upon return date.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq11">
+                            What if I lose or damage a borrowed book?
+                        </button>
+                    </h2>
+                    <div id="faq11" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            If you damage or lose a borrowed book, contact the owner immediately and work out a resolution together. This could include replacement, repair, or compensation. Always treat borrowed books with care.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq12">
+                            Can I edit or delete my books?
+                        </button>
+                    </h2>
+                    <div id="faq12" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Yes! You can edit book details anytime from "My Books". If a book has pending requests, you should wait until requests are resolved before deletion. Mark books as unavailable if you don't want new requests.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Safety & Community -->
+                <h5 class="mb-3 mt-4">Safety & Community</h5>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq13">
+                            Is my personal information safe?
+                        </button>
+                    </h2>
+                    <div id="faq13" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Yes. We take privacy seriously. Your email and personal information are never shared with other users without your consent. Read our Privacy Policy for more details about how we handle your data.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq14">
+                            What if there's a conflict with another user?
+                        </button>
+                    </h2>
+                    <div id="faq14" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Try to resolve disputes directly with the other user through communication. If you can't reach an agreement, contact us at stulibshare@gmail.com with details, and we'll help mediate. Please read our Terms of Service for community guidelines.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq15">
+                            Can I view other users' profiles?
+                        </button>
+                    </h2>
+                    <div id="faq15" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Yes, you can view other users' profiles to see their book collections and borrowing history. This helps you decide whether to request a book from them. Profiles are visible only to logged-in users.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Support -->
+                <h5 class="mb-3 mt-4">Technical Support</h5>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq16">
+                            I'm having technical issues. What should I do?
+                        </button>
+                    </h2>
+                    <div id="faq16" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Try clearing your browser cache and cookies, then refresh the page. If the issue persists, contact us at stulibshare@gmail.com with details about the problem and screenshots if possible. We'll get back to you within 24 hours.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq17">
+                            Which browsers are supported?
+                        </button>
+                    </h2>
+                    <div id="faq17" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            stuLib works best on modern browsers like Chrome, Firefox, Safari, and Edge. For the best experience, keep your browser updated to the latest version.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-lg-8 mx-auto text-center">
+            <h3 class="mb-3">Still have questions?</h3>
+            <p class="mb-3">Can't find the answer you're looking for? Please contact us.</p>
+            <a href="/contact" class="btn btn-primary">Contact Us</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .accordion-button:not(.collapsed) {
+        background-color: #e7f3ff;
+        color: #007bff;
+    }
+    .accordion-button:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+    }
+    .accordion-item {
+        margin-bottom: 0.5rem;
+    }
+</style>

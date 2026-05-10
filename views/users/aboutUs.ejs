@@ -1,0 +1,101 @@
+<%layout("/layouts/boilerplate.ejs")%>
+
+<div class="container py-5">
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="mb-4 text-center">About stuLib</h1>
+            <p class="lead text-center mb-5">Empowering students through shared knowledge and community collaboration</p>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h2 class="mb-3">Our Mission</h2>
+            <p>stuLib is a peer-to-peer library system designed to foster a culture of knowledge sharing among students. We believe that access to books should not be limited by financial constraints, and that true learning happens when students help each other grow.</p>
+            <p>Our platform enables students to share their personal book collections, discover new reads from their peers, and build a strong academic community based on collaboration and mutual support.</p>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h2 class="mb-3">Why stuLib?</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fa-solid fa-book-open me-2"></i>Free Access</h5>
+                            <p class="card-text">Borrow books from fellow students at no cost. Share your collection and help others discover new knowledge.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fa-solid fa-users me-2"></i>Community Driven</h5>
+                            <p class="card-text">Connect with like-minded students who share your passion for learning and reading.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fa-solid fa-search me-2"></i>Easy Discovery</h5>
+                            <p class="card-text">Find the books you need quickly with our intelligent search system tailored for students.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fa-solid fa-handshake me-2"></i>Flexible Borrowing</h5>
+                            <p class="card-text">Negotiate terms directly with fellow students. Return books at your convenience with mutual agreements.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h2 class="mb-3">Our Values</h2>
+            <ul class="list-group">
+                <li class="list-group-item p-2"><strong>Accessibility:</strong> Making education resources available to all students</li>
+                <li class="list-group-item p-2"><strong>Sustainability:</strong> Promoting a circular economy for educational materials</li>
+                <li class="list-group-item p-2"><strong>Trust:</strong> Building a safe community through transparent interactions</li>
+                <li class="list-group-item p-2"><strong>Collaboration:</strong> Fostering peer learning and mutual growth</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+            <h2 class="mb-4">Join Our Community</h2>
+            <p class="mb-4">Start sharing knowledge with your college community today!</p>
+            <%if(!currUser){%>
+                <a href="/user/signup" class="btn btn-primary btn-lg me-2">Sign Up</a>
+                <a href="/user/login" class="btn btn-secondary btn-lg">Login</a>
+            <%}%>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border: none;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .list-group-item {
+        border: none;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 1rem 0;
+    }
+    .list-group-item:last-child {
+        border-bottom: none;
+    }
+</style>

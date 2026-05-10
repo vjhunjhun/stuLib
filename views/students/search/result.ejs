@@ -1,0 +1,215 @@
+<% layout("./layouts/boilerplate.ejs") %>
+<style>
+.book-card {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: white;
+  border-radius: 14px;
+  height: 250px;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  transition: 0.3s ease;
+  overflow: hidden;
+}
+
+.book-card:hover {
+  transform: translateY(-6px);
+}
+
+
+.book-spine {
+  width: 6%;
+  height: 100%;
+  background: rgba(255,255,255,0.25);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+}
+
+.book-pages {
+  width: 92%;
+  height: 2%;
+  position: absolute;
+  top: 98%;
+  left: 6%;
+  border-bottom-right-radius: 20px;
+  background: repeating-linear-gradient(
+    #ffffff,
+  #ffffff 1px,
+  #ced6ee 1px,
+  #ced6ee 2px
+  );
+ 
+  box-shadow: inset -2px 0 5px rgba(0,0,0,0.15);
+  z-index: 1;
+}
+
+
+
+.book-body {
+  padding: 20px 22px 18px 28px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  position: relative;
+  z-index: 3;
+}
+
+
+.book-title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  height: 38px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+display: box;              
+box-orient: vertical;
+line-clamp: 2;
+}
+
+
+.book-subject {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+
+.status-badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  width: fit-content;
+  text-transform: capitalize;
+}
+
+.status-badge.available {
+  background: #00e676;
+  color: black;
+}
+
+.status-badge.lent {
+  background: #ffb300;
+  color: black;
+}
+
+.status-badge.not_available {
+  background: #ff5252;
+}
+
+.status-badge.hold {
+  background: rgb(160, 160, 160);
+  font-weight: 600;
+}
+
+
+.details-btn {
+  background: white;
+  color: #1e3c72;
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.25s;
+  border: none;
+}
+
+.details-btn:hover {
+  background: #e3ecff;
+  color: #1e3c72;
+}
+
+</style>
+
+<div class="container mt-5 mb-5">
+  <a href="/student/" class="btn btn-outline-secondary btn-sm mb-2">
+        <i class="fa-solid fa-arrow-left"></i> Home
+      </a>
+  <h2 class="text-center mb-4"><%=books.length>0?"Available Books":"No Books Available"%></h2>
+
+  <div class="row g-4">
+    <% for(let book of books){ %>
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="book-card">
+
+          
+          <div class="book-spine"></div>
+
+          
+          <div class="book-pages"></div>
+
+          <div class="book-body">
+            <div>
+              <h5 class="book-title"><%= book.title %></h5>
+              <%if(book.isHold || book.isLent){%>
+                <%if(book.isHeldBy){%>
+                    <%if(book.isHeldBy && book.isHeldBy.equals(currUser._id)){%>
+  <span class="status-badge mt-1 d-inline-block hold">
+    Requested By You
+  </span>
+  <%}else{%>
+      <span class="status-badge hold mt-1 d-inline-block">
+    Holded
+  </span>
+    <%}%>
+                  <%}else{%>
+                    <%if(book.isLentTo && book.isLentTo.equals(currUser._id)){%>
+  <span class="status-badge mt-1 d-inline-block lent">
+    Lent to you
+  </span>
+  <%}else{%>
+      <span class="status-badge lent mt-1 d-inline-block">
+    Lent
+  </span>
+    <%}%>
+                    <%}%>
+              <%}else{%>
+                <span class="status-badge <%= book.status %> mt-1 d-inline-block">
+         <%= book.status.replace("_", " ") %>
+       </span>
+              <%}%>  
+            </div>
+            
+            <div class="d-flex justify-content-between align-items-center">
+             
+              <a href="/student/search/<%= book._id %>" class="details-btn">
+                See Details
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  </div>
+  <nav class="mt-4">
+  <ul class="pagination justify-content-center">
+
+    <% if (currentPage > 1) { %>
+      <li class="page-item">
+        <a class="page-link" href="/student/search?q=<%= q %>&fil=<%= fil %>&p=<%= currentPage - 1 %>">Prev</a>
+      </li>
+    <% } %>
+
+    <% for (let i = 1; i <= totalPages; i++) { %>
+      <li class="page-item <%= i === currentPage ? 'active' : '' %>">
+        <a class="page-link" href="/student/search?q=<%= q %>&fil=<%= fil %>&p=<%= i %>"><%= i %></a>
+      </li>
+    <% } %>
+
+    <% if (currentPage < totalPages) { %>
+      <li class="page-item">
+        <a class="page-link" href="/student/search?q=<%= q %>&fil=<%= fil %>&p=<%= currentPage + 1 %>">Next</a>
+      </li>
+    <% } %>
+
+  </ul>
+</nav>
+
+</div>
+

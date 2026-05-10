@@ -1,0 +1,262 @@
+<% layout("./layouts/boilerplate.ejs") %>
+<style>
+p{
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+.open-book {
+  background: #fdf9f3;
+  padding: 40px 20px;
+  border-radius: 12px;
+  box-shadow: 0px 8px 25px rgba(0,0,0,0.15);
+  display: flex;
+  gap: 20px;
+  position: relative;
+  max-width: 950px;
+  margin: 40px auto;
+  flex-wrap: wrap; 
+}
+
+
+.open-book::before {
+  content: "";
+  width: 3px;
+  background: #d1c7b7;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+}
+
+.book-page {
+  flex: 1;
+  min-width: 300px;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 25px 30px;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.08);
+}
+
+.page-title {
+  font-weight: 700;
+  color: #1e3c72;
+}
+
+.label {
+  font-weight: 600;
+  color: #2a5298;
+}
+.status-badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  width: fit-content;
+  text-transform: capitalize;
+}
+
+.status-badge.lent {
+  background: #ffb300;
+  color: black;
+}
+
+.status-badge.hold {
+  background: rgb(160, 160, 160);
+  color: white;
+  font-weight: 600;
+}
+.status-badge.not_available {
+  background: #ff5252;
+  color: white;
+}
+.status-badge.available {
+  background: #00e676;
+  color: black;
+}
+
+@media (max-width: 768px) {
+    .open-book {
+        margin: 10px;
+    padding: 20px 10px;
+    gap: 15px;
+  }
+
+  .open-book::before {
+    display: none;
+  }
+
+  .book-page {
+    width: 100%;
+    min-width: 100%;
+    padding: 20px 18px;
+  }
+
+  .page-title {
+    font-size: 20px;
+  }
+}
+</style>
+<div class="container mt-5 mb-5">
+  
+<a href="<%=isSearch?prevUrl:'/student/mybooks'%>" class="btn btn-outline-secondary btn-sm mb-1">
+        <i class="fa-solid fa-arrow-left"></i> Back
+      </a>
+      
+<div class="open-book">
+
+  
+  <div class="book-page">
+    <h3 class="page-title"><%= book.title %></h3>
+    <hr>
+
+    <p><span class="label">Subject:</span> <%= book.subject %></p>
+    <p><span class="label">Author:</span> <%= book.author %></p>
+    <p><span class="label">Faculty:</span> <%= book.faculty || 'N/A' %></p>
+    <p><span class="label">Semester:</span> <%= book.semester || 'N/A' %></p>
+    <p class="description"><span class="label">Description:</span><br>
+      <%= book.description || "No description available." %>
+    </p>
+  </div>
+
+  
+  <div class="book-page">
+    <h4 class="page-title">Book Information</h4>
+    <hr>
+
+    <p>
+      <span class="label">Status:</span> 
+      <%if(book.isHold || book.isLent){%>
+                <%if(book.isHeldBy){%>
+                    <%if(book.isHeldBy && book.isHeldBy.equals(currUser._id)){%>
+  <span class="status-badge mt-1 d-inline-block hold">
+    Requested By You
+  </span>
+  <%}else{%>
+      <span class="status-badge hold mt-1 d-inline-block">
+    Holded
+  </span>
+    <%}%>
+                  <%}else{%>
+                    <%if(book.isLentTo && book.isLentTo.equals(currUser._id)){%>
+  <span class="status-badge mt-1 d-inline-block lent">
+    Lent to you
+  </span>
+  <%}else{%>
+      <span class="status-badge lent mt-1 d-inline-block">
+    Lent
+  </span>
+    <%}%>
+                    <%}%>
+              <%}else{%>
+                <span class="status-badge <%= book.status %> mt-1 d-inline-block">
+         <%= book.status.replace("_", " ") %>
+       </span>
+              <%}%> 
+    </p>
+
+    <p><span class="label">ISBN:</span> <%= book.isbn ||'N/A'%></p>
+    <p><span class="label">Category:</span> <%= book.category ||'N/A'%></p>
+    <%if(!isSearch){%>
+    <div class="mt-3">
+      
+      <a href="/student/mybooks/<%= book._id %>/info" class="btn btn-outline-primary btn-sm mb-2">
+        Lend History <i class="fa-solid fa-arrow-right"></i> 
+      </a>
+      <%if(!book.isLent && !book.isHold){%>
+      <a href="/student/mybooks/<%= book._id %>/edit" 
+         class="btn btn-outline-success btn-sm mb-2">
+        <i class="fa-solid fa-pencil"></i> Edit
+      </a>
+      <button 
+      class="btn btn-outline-danger btn-sm confirm-button" 
+      data-bs-toggle="modal" 
+      data-bs-target="#confirmModal">
+      <i class="fa-solid fa-trash"></i> Delete
+    </button>
+  <%}else{%>
+    <%if(!returnRequest){%>
+    <button 
+      class="btn btn-outline-danger btn-sm confirm-button" 
+      data-bs-toggle="modal" 
+      data-bs-target="#confirmModal">
+      <i class="fa-solid fa-trash"></i> Request Return
+    </button>
+    <%}%>
+    <%}%>
+    </div>
+<%}else{%>
+  <%if(!book.isLent && !book.isHold){%>
+    <div class="mt-3">
+        <button 
+  class="btn btn-outline-danger btn-sm confirm-button" 
+  data-bs-toggle="modal" 
+  data-bs-target="#confirmModal">
+  <i class="fa-solid fa-bell"></i> Request Book
+    </button>
+    </div>
+  <%}%>
+  <%}%>
+  </div>
+
+</div>
+
+   <% 
+        let actionUrl = "";
+        if(isSearch){
+          actionUrl=`/student/search/borrow/${book._id}`;
+        }else if(!book.isLent && !book.isHold){
+          actionUrl=`/student/mybooks/${book._id}?_method=DELETE`;
+        }else{
+          actionUrl = `/student/requests/books/${book._id}/return`;
+        }
+         %>
+<div class="modal fade" id="confirmModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <%if(!isSearch && !book.isLent && !book.isHold){%>
+         Confirm Delete
+        <%}else{%>
+          Confirm Request
+       <%}%>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body text-center">
+        <%if(!isSearch && !book.isLent && !book.isHold){%>
+          Are you sure you want to delete this book?
+        <%}else{%>
+          Are you sure you want to request this book?
+       <%}%>
+      </div>
+
+      <div class="modal-footer d-flex justify-content-between">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+  Go Back
+</button>
+        <form 
+  method="POST"
+  action="<%=actionUrl%>">
+   <% if (isSearch) { %>
+    <input type="hidden" name="prevUrl" value="<%= prevUrl %>">
+  <% } %>
+  <button type="submit" class="btn btn-danger">
+     <% if (!isSearch && !book.isLent && !book.isHold) { %>
+    Delete
+  <% } else { %>
+    Request
+  <% } %>
+  </button>
+</form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+

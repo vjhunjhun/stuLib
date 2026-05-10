@@ -1,0 +1,58 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<div class="container mt-5 mb-5">
+
+  
+  <a href="/student/mybooks/<%= book._id %>" class="btn btn-outline-secondary btn-sm mb-3">
+    <i class="fa-solid fa-arrow-left"></i> My Book
+  </a>
+
+  
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered">
+        <thead class="table-light text-center">
+          <tr>
+            <th scope="col">SN</th>
+            <th scope="col">Borrowed By</th>
+            <th scope="col">Borrowed Date</th>
+            <th scope="col">Status</th>
+            <th scope="col">Return Date</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <% book.lendHistory.forEach((history, index) => { %>
+            <tr>
+              <th scope="row"><%= (index + 1) + (page - 1) * limit %></th>
+              <td><%= history.lendBy.username %></td>
+              <td><%= new Date(history.borrowDate).toLocaleDateString() %></td>
+              <td>
+                <span class="badge <%= history.status === 'returned' ? 'bg-success' : 'bg-warning text-dark' %>">
+                  <%= history.status %>
+                </span>
+              </td>
+              <td>
+                <%= history.returnDate ? new Date(history.returnDate).toLocaleDateString() : "-" %>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+     <div class="d-flex justify-content-between justify-content-center gap-2 mt-3 flex-wrap">
+
+  <% if (hasPrevPage) { %>
+    <a href="?page=<%= page - 1 %>" class="btn btn-outline-primary btn-sm mb-3">Previous</a>
+  <% } else { %>
+    <button class="btn btn-outline-secondary btn-sm mb-3" disabled>Previous</button>
+  <% } %>
+
+  <% if (hasNextPage) { %>
+    <a href="?page=<%= page + 1 %>" class="btn btn-success btn-sm mb-3">Next</a>
+  <% } else { %>
+    <button class="btn btn-secondary btn-sm mb-3" disabled>Next</button>
+  <% } %>
+
+</div>
+    </div>
+  
+
+</div>
