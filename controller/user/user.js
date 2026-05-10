@@ -1,81 +1,53 @@
 const Student = require("../../model/student");
 const crypto = require("crypto");
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 const SiteStat = require("../../model/siteStat");
-console.log("Before transporter");
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-  auth: {
-    user: process.env.EMAIL,
-    pass: process.env.EMAIL_PASS,
-  },
-
-  tls: {
-    rejectUnauthorized: false,
-  },
-
-  connectionTimeout: 10000,
-  greetingTimeout: 10000,
-  socketTimeout: 10000,
-
-  family: 4,
-});
-console.log("After transporter");
-console.log("EMAIL:", process.env.EMAIL);
-console.log("PASS EXISTS:", !!process.env.EMAIL_PASS);
-console.log("BASE_URL:", process.env.BASE_URL);
-console.log("Starting verify");
-
-transporter
-  .verify()
-  .then(() => {
-    console.log("SMTP READY");
-  })
-  .catch((err) => {
-    console.error("SMTP ERROR:", err);
-  });
 async function sendEmailVerification(email,token) {
-    const url = `${process.env.BASE_URL}/user/verify-email/${token}`;
-
-    await transporter.sendMail({
-        to:email,
-        subject:"Verify your stuLib account",
-        html: `
-      <h3>Welcome to StuLib</h3>
-      <p>Click the link below to verify your email:</p>
-      <a href="${url}">Verify Email</a>
-    `
-    });
+  const url = `${process.env.BASE_URL}/user/verify-email/${token}`;
+  
+  const result = await resend.emails.send({
+    from: "onboarding@resend.dev",
+    to: email,
+    subject: "Verify your StuLib account",
+    html: `
+            <h3>Welcome to StuLib</h3>
+            <p>Click below to verify your email:</p>
+            <a href="${url}">Verify Email</a>
+        `,
+  });
+  console.log("email result:",result);
 }
 
 async function sendResetVerification(email,token) {
-    const url = `${process.env.BASE_URL}/user/reset/verify-email/${token}`;
-
-    await transporter.sendMail({
-        to:email,
-        subject:"Verify your stuLib account",
-        html: `
+  const url = `${process.env.BASE_URL}/user/reset/verify-email/${token}`;
+  
+  await resend.emails.send({
+    from: "onboarding@resend.dev",
+    to: email,
+    subject: "Verify your stuLib account",
+    html: `
       <h3>Hello From StuLib</h3>
       <p>Click the link below to verify your email First:</p>
       <a href="${url}">Verify Email</a>
       <p>After verifying your email you will receive new password via email.</p>
-    `
-    });
+    `,
+  });
 }
 
 async function sendNewPassword(email, password) {
-    await transporter.sendMail({
-    to: email,
-    subject: "Your New Password",
-    html: `
+
+      await resend.emails.send({
+        from: "onboarding@resend.dev",
+        to: email,
+        subject: "Your New Password",
+        html: `
       <h3>Hello From StuLib</h3>
       <p>Here is your new password please login to your account and change the password!</p>
       <p>Your Password: <b>${password}</b></p>
     `,
-  });
+      });
 }
 
 module.exports.renderLoginForm = (req,res)=>{
