@@ -10,7 +10,8 @@ module.exports.renderIndexPage = async(req,res)=>{
         }}
     ]);
     let reqCount = student[0]?.requestCount || 0;
-    const hour = new Date().getHours();
+    const localTime = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kathmandu' }));
+    const hour = localTime.getHours();
     let greeting;
     if (hour >= 5 && hour < 12) {
         greeting = "Good Morning";
